@@ -1,0 +1,3 @@
+Package Name                  Installed Version   Latest Version      License                                 URL
+=================================================================================================================
+docker://oskarstark/php-cs-fixer-gagithub-action       github-action       License information not found           URL not found

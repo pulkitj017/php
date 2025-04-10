@@ -1,0 +1,83 @@
+name 7.8.1 ! 7.9.0 Guzzle is a PHP HTTP client library
+intervention/image                 2.7.2   ~ 3.7.2   Image handling and manipulation library with support for Laravel integration
+laravel/framework                  9.52.16 ~ 11.16.0 The Laravel Framework.
+laravel/pint                       1.5.0   ! 1.16.2  An opinionated code formatter for PHP.
+laravel/sail                       1.29.1  ! 1.30.2  Docker files for running a basic Laravel application.
+laravel/sanctum                    3.3.3   ~ 4.0.2   Laravel Sanctum provides a featherweight authentication system for SPAs and simple APIs.
+mockery/mockery                    1.6.11  ! 1.6.12  Mockery is a simple yet flexible PHP mock object framework
+nunomaduro/collision               6.4.0   ~ 8.3.0   Cli error handling for console/command-line PHP applications.
+phpunit/phpunit                    9.6.19  ~ 11.2.7  The PHP Unit Testing framework.
+spatie/laravel-ignition            1.6.4   ~ 2.8.0   A beautiful error page for Laravel applications.
+spatie/laravel-query-builder       5.7.0   ~ 6.0.1   Easily build Eloquent queries from API requests
+brick/math                         0.11.0  ~ 0.12.1  Arbitrary-precision arithmetic library
+carbonphp/carbon-doctrine-types    2.1.0   ~ 3.2.0   Types to use Carbon in Doctrine
+dflydev/dot-access-data            3.0.2   ! 3.0.3   Given a deep data structure, access data by dot notation.
+doctrine/instantiator              1.5.0   ~ 2.0.0   A small, lightweight utility to instantiate objects in PHP without invoking their constructors
+doctrine/lexer                     2.1.1   ~ 3.0.1   PHP Doctrine Lexer parser library that can be used in Top-Down, Recursive Descent Parsers.
+egulias/email-validator            3.2.6   ~ 4.0.2   A library for validating emails against several RFCs
+guzzlehttp/promises                2.0.2   ! 2.0.3   Guzzle promises library
+guzzlehttp/psr7                    2.6.2   ! 2.7.0   PSR-7 message implementation that also provides common utility methods
+league/flysystem                   3.27.0  ! 3.28.0  File storage abstraction for PHP
+league/flysystem-local             3.25.1  ! 3.28.0  Local filesystem adapter for Flysystem.
+monolog/monolog                    2.9.3   ~ 3.7.0   Sends your logs to files, sockets, inboxes, databases and various web services
+myclabs/deep-copy                  1.11.1  ! 1.12.0  Create deep copies (clones) of your objects
+nesbot/carbon                      2.72.3  ~ 3.7.0   An API extension for DateTime that supports 281 different languages.
+nette/schema                       1.2.5   ! 1.3.0   =ƒôÉ Nette Schema: validating data structures against a given Schema.
+nikic/php-parser                   5.0.2   ! 5.1.0   A PHP parser written in PHP
+nunomaduro/termwind                1.15.1  ~ 2.0.1   Its like Tailwind CSS, but for the console.
+phpunit/php-code-coverage          9.2.31  ~ 11.0.5  Library that provides collection, processing, and rendering functionality for PHP code coverage information.
+phpunit/php-file-iterator          3.0.6   ~ 5.0.1   FilterIterator implementation that filters files based on a list of suffixes.
+phpunit/php-invoker                3.1.1   ~ 5.0.1   Invoke callables with a timeout
+phpunit/php-text-template          2.0.4   ~ 4.0.1   Simple template engine.
+phpunit/php-timer                  5.0.3   ~ 7.0.1   Utility class for timing
+psr/http-factory                   1.0.2   ! 1.1.0   Common interfaces for PSR-7 HTTP message factories
+psy/psysh                          0.12.3  ! 0.12.4  An interactive shell for modern PHP.
+ramsey/collection                  1.3.0   ~ 2.0.0   A PHP library for representing and manipulating collections.
+ramsey/uuid                        4.7.5   ! 4.7.6   A PHP library for generating and working with universally unique identifiers (UUIDs).
+sebastian/cli-parser               1.0.2   ~ 3.0.2   Library for parsing CLI options
+sebastian/code-unit                1.0.8   ~ 3.0.1   Collection of value objects that represent the PHP code units
+sebastian/code-unit-reverse-lookup 2.0.3   ~ 4.0.1   Looks up which function or method a line of code belongs to
+sebastian/comparator               4.0.8   ~ 6.0.1   Provides the functionality to compare PHP values for equality
+sebastian/complexity               2.0.3   ~ 4.0.1   Library for calculating the complexity of PHP code units
+sebastian/diff                     4.0.6   ~ 6.0.2   Diff implementation
+sebastian/environment              5.1.5   ~ 7.2.0   Provides functionality to handle HHVM/PHP environments
+sebastian/exporter                 4.0.6   ~ 6.1.3   Provides the functionality to export PHP variables for visualization
+sebastian/global-state             5.0.7   ~ 7.0.2   Snapshotting of global state
+sebastian/lines-of-code            1.0.4   ~ 3.0.1   Library for counting the lines of code in PHP source code
+sebastian/object-enumerator        4.0.4   ~ 6.0.1   Traverses array structures and object graphs to enumerate all referenced objects
+sebastian/object-reflector         2.0.4   ~ 4.0.1   Allows reflection of object attributes, including inherited and non-public ones
+sebastian/recursion-context        4.0.5   ~ 6.0.2   Provides functionality to recursively process PHP variables
+sebastian/type                     3.2.1   ~ 5.0.1   Collection of value objects that represent the types of the PHP type system
+sebastian/version                  3.0.2   ~ 5.0.1   Library that helps with managing the version number of Git-hosted PHP projects
+spatie/backtrace                   1.5.3   ! 1.6.1   A better backtrace
+spatie/flare-client-php            1.4.4   ! 1.7.0   Send PHP errors to Flare
+spatie/ignition                    1.13.2  ! 1.15.0  A beautiful error page for PHP applications.
+symfony/console                    6.0.19  ~ 7.1.2   Eases the creation of beautiful and testable command line interfaces
+symfony/css-selector               6.0.19  ~ 7.1.1   Converts CSS selectors to XPath expressions
+symfony/deprecation-contracts      3.0.2   ! 3.5.0   A generic function and convention to trigger deprecation notices
+symfony/error-handler              6.0.19  ~ 7.1.2   Provides tools to manage errors and ease debugging PHP code
+symfony/event-dispatcher           6.0.19  ~ 7.1.1   Provides tools that allow your application components to communicate with each other by dispatching events ...
+symfony/event-dispatcher-contracts 3.0.2   ! 3.5.0   Generic abstractions related to dispatching event
+symfony/finder                     6.0.19  ~ 7.1.1   Finds files and directories via an intuitive fluent interface
+symfony/http-foundation            6.0.20  ~ 7.1.1   Defines an object-oriented layer for the HTTP specification
+symfony/http-kernel                6.0.20  ~ 7.1.2   Provides a structured process for converting a Request into a Response
+symfony/mailer                     6.0.19  ~ 7.1.2   Helps sending emails
+symfony/mime                       6.0.19  ~ 7.1.2   Allows manipulating MIME messages
+symfony/polyfill-ctype             1.29.0  ! 1.30.0  Symfony polyfill for ctype functions
+symfony/polyfill-intl-grapheme     1.29.0  ! 1.30.0  Symfony polyfill for intl's grapheme_* functions
+symfony/polyfill-intl-idn          1.29.0  ! 1.30.0  Symfony polyfill for intl's idn_to_ascii and idn_to_utf8 functions
+symfony/polyfill-intl-normalizer   1.29.0  ! 1.30.0  Symfony polyfill for intl's Normalizer class and related functions
+symfony/polyfill-mbstring          1.29.0  ! 1.30.0  Symfony polyfill for the Mbstring extension
+symfony/polyfill-php72             1.29.0  ! 1.30.0  Symfony polyfill backporting some PHP 7.2+ features to lower PHP versions
+symfony/polyfill-php80             1.29.0  ! 1.30.0  Symfony polyfill backporting some PHP 8.0+ features to lower PHP versions
+symfony/polyfill-php81             1.29.0  ! 1.30.0  Symfony polyfill backporting some PHP 8.1+ features to lower PHP versions
+symfony/polyfill-uuid              1.29.0  ! 1.30.0  Symfony polyfill for uuid functions
+symfony/process                    6.0.19  ~ 7.1.1   Executes commands in sub-processes
+symfony/routing                    6.0.19  ~ 7.1.1   Maps an HTTP request to a set of configuration variables
+symfony/service-contracts          3.0.2   ! 3.5.0   Generic abstractions related to writing services
+symfony/string                     6.0.19  ~ 7.1.2   Provides an object-oriented API to strings and deals with bytes, UTF-8 code points and grapheme clusters in...
+symfony/translation                6.0.19  ~ 7.1.1   Provides tools to internationalize your application
+symfony/translation-contracts      3.0.2   ! 3.5.0   Generic abstractions related to translation
+symfony/uid                        6.0.19  ~ 7.1.1   Provides an object-oriented API to generate and represent UIDs
+symfony/var-dumper                 6.0.19  ~ 7.1.2   Provides mechanisms for walking through any arbitrary PHP variable
+symfony/yaml                       6.0.19  ~ 7.1.1   Loads and dumps YAML files
