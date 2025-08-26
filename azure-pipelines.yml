@@ -1,0 +1,74 @@
+trigger:
+- master
+
+pool:
+  name: 'sbom-vm-pool'
+
+stages:
+- stage: Build
+  displayName: Build
+  jobs:
+    - job: BuildJob
+      displayName: Build Job
+      workspace:
+        clean: all  
+      steps:
+        - checkout: self
+        - task: PublishPipelineArtifact@1
+          displayName: 'Publish Build Artifact'
+          inputs:
+            targetPath: '.'
+            artifact: 'project'
+
+
+
+- stage: sbom_scan
+  displayName: SBOM Scan
+  dependsOn: build
+  jobs:
+    - job: sbom_job
+      displayName: SBOM Job
+      steps:
+        - download: current
+          artifact: project
+          displayName: 'Download Build Artifact'
+
+        - script: |
+            ls
+            sudo bash ./php-install.sh
+          displayName: 'Run php-install.sh'
+
+        - script: |
+            ls
+            sudo bash ./get-details.sh
+            echo "After get-details.sh:"
+            ls -l
+            echo "Contents of sbom-dependency.txt (if exists):"
+            cat sbom-dependency.txt || echo "sbom-dependency.txt not found"
+            echo "Contents of sbom-outdated-dependencies.txt (if exists):"
+            cat sbom-outdated-dependencies.txt || echo "sbom-outdated-dependencies.txt not found"
+            echo "Contents of sbom-licenses.txt (if exists):"
+            cat sbom-licenses.txt || echo "sbom-licenses.txt not found"
+          displayName: 'Run get-details.sh and show output'
+
+        - script: |
+            sudo bash ./merge-details.sh
+            echo "After merge-details.sh:"
+            ls -l
+            cat sbom-result.txt || echo "sbom-result.txt not found"
+          displayName: 'Run merge-details.sh and show output'
+
+        - script: |
+            sudo bash ./trivy.sh
+            echo "After trivy.sh:"
+            ls -l
+            cat trivy-vulnerabilities.txt || echo "trivy-vulnerabilities.txt not found"
+          displayName: 'Run trivy.sh and show output'
+
+        - publish: trivy-vulnerabilities.txt
+          artifact: trivy-vulnerabilities
+          displayName: 'Publish Trivy Vulnerabilities'
+
+        - publish: sbom-result.txt
+          artifact: sbom-result
+          displayName: 'Publish SBOM Result'
