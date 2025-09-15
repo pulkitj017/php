@@ -48,12 +48,6 @@ jobs:
           sudo bash ./get-details.sh
           echo "After get-details.sh:"
           ls -l
-          echo "Contents of sbom-dependency.txt (if exists):"
-          cat sbom-dependency.txt || echo "sbom-dependency.txt not found"
-          echo "Contents of sbom-outdated-dependencies.txt (if exists):"
-          cat sbom-outdated-dependencies.txt || echo "sbom-outdated-dependencies.txt not found"
-          echo "Contents of sbom-licenses.txt (if exists):"
-          cat sbom-licenses.txt || echo "sbom-licenses.txt not found"
 
       - name: Run merge-details.sh
         run: |
@@ -61,14 +55,6 @@ jobs:
           echo "After merge-details.sh:"
           ls -l
           cat sbom-result.txt || echo "sbom-result.txt not found"
-
-      - name: Install Trivy
-        run: |
-          wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_0.55.0_Linux-64bit.deb
-          sudo dpkg -i trivy_0.55.0_Linux-64bit.deb || true
-          sudo apt-get --fix-broken install -y
-          trivy --version
-          rm -rf trivy_0.55.0_Linux-64bit.deb
 
       - name: Run trivy.sh
         run: |
