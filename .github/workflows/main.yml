@@ -1,38 +1,40 @@
-name: PHP SBOM and Security Scan
+name: PHP SBOM Scan
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
-  pull_request:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Upload project artifact
+      - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
           name: project
           path: .
 
   sbom_scan:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: build
+
     steps:
-      - name: Download project artifact
+      - name: Download Build Artifact
         uses: actions/download-artifact@v4
         with:
           name: project
           path: .
 
-      - name: Install PHP
+      - name: Install PHP & Composer
         run: |
           sudo apt-get update
-          sudo apt-get install -y php-cli php-xml composer
+          sudo apt-get install -y php-cli php-xml composer unzip
           php -v
           composer -V
 
@@ -41,9 +43,8 @@ jobs:
           ls
           sudo bash ./php-install.sh
 
-      - name: Run get-details.sh and show output
+      - name: Run get-details.sh
         run: |
-          ls
           sudo bash ./get-details.sh
           echo "After get-details.sh:"
           ls -l
@@ -54,7 +55,7 @@ jobs:
           echo "Contents of sbom-licenses.txt (if exists):"
           cat sbom-licenses.txt || echo "sbom-licenses.txt not found"
 
-      - name: Run merge-details.sh and show output
+      - name: Run merge-details.sh
         run: |
           sudo bash ./merge-details.sh
           echo "After merge-details.sh:"
@@ -63,12 +64,13 @@ jobs:
 
       - name: Install Trivy
         run: |
-          sudo apt-get install -y wget
           wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_0.55.0_Linux-64bit.deb
-          sudo dpkg -i trivy_0.55.0_Linux-64bit.deb
+          sudo dpkg -i trivy_0.55.0_Linux-64bit.deb || true
+          sudo apt-get --fix-broken install -y
           trivy --version
+          rm -rf trivy_0.55.0_Linux-64bit.deb
 
-      - name: Run trivy.sh and show output
+      - name: Run trivy.sh
         run: |
           sudo bash ./trivy.sh
           echo "After trivy.sh:"
