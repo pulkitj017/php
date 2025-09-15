@@ -1,0 +1,88 @@
+name: PHP SBOM and Security Scan
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Upload project artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: project
+          path: .
+
+  sbom_scan:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download project artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: project
+          path: .
+
+      - name: Install PHP
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y php-cli php-xml composer
+          php -v
+          composer -V
+
+      - name: Run php-install.sh
+        run: |
+          ls
+          sudo bash ./php-install.sh
+
+      - name: Run get-details.sh and show output
+        run: |
+          ls
+          sudo bash ./get-details.sh
+          echo "After get-details.sh:"
+          ls -l
+          echo "Contents of sbom-dependency.txt (if exists):"
+          cat sbom-dependency.txt || echo "sbom-dependency.txt not found"
+          echo "Contents of sbom-outdated-dependencies.txt (if exists):"
+          cat sbom-outdated-dependencies.txt || echo "sbom-outdated-dependencies.txt not found"
+          echo "Contents of sbom-licenses.txt (if exists):"
+          cat sbom-licenses.txt || echo "sbom-licenses.txt not found"
+
+      - name: Run merge-details.sh and show output
+        run: |
+          sudo bash ./merge-details.sh
+          echo "After merge-details.sh:"
+          ls -l
+          cat sbom-result.txt || echo "sbom-result.txt not found"
+
+      - name: Install Trivy
+        run: |
+          sudo apt-get install -y wget
+          wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_0.55.0_Linux-64bit.deb
+          sudo dpkg -i trivy_0.55.0_Linux-64bit.deb
+          trivy --version
+
+      - name: Run trivy.sh and show output
+        run: |
+          sudo bash ./trivy.sh
+          echo "After trivy.sh:"
+          ls -l
+          cat trivy-vulnerabilities.txt || echo "trivy-vulnerabilities.txt not found"
+
+      - name: Upload Trivy Vulnerabilities
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-vulnerabilities
+          path: trivy-vulnerabilities.txt
+
+      - name: Upload SBOM Result
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-result
+          path: sbom-result.txt
