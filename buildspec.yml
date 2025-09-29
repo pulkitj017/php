@@ -13,25 +13,25 @@ phases:
     commands:
       - echo "Running php-install.sh..."
       - chmod +x php-install.sh
-      - ./php-install.sh
+      - bash ./php-install.sh
       - ls -l
 
   build:
     commands:
       - echo "Running get-details.sh..."
       - chmod +x get-details.sh
-      - ./get-details.sh
+      - bash ./get-details.sh
       - ls -l
 
       - echo "Merging details..."
       - chmod +x merge-details.sh
-      - ./merge-details.sh
+      - bash ./merge-details.sh
       - ls -l
       - cat sbom-result.txt || echo "sbom-result.txt not found"
 
       - echo "Running Trivy scan..."
       - chmod +x trivy.sh
-      - ./trivy.sh
+      - bash ./trivy.sh
       - ls -l
       - cat trivy-vulnerabilities.txt || echo "trivy-vulnerabilities.txt not found"
 
