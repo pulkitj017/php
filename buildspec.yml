@@ -1,0 +1,45 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing PHP & Composer..."
+      - apt-get update
+      - apt-get install -y php-cli php-xml composer unzip
+      - php -v
+      - composer -V
+
+  pre_build:
+    commands:
+      - echo "Running php-install.sh..."
+      - chmod +x php-install.sh
+      - ./php-install.sh
+      - ls -l
+
+  build:
+    commands:
+      - echo "Running get-details.sh..."
+      - chmod +x get-details.sh
+      - ./get-details.sh
+      - ls -l
+
+      - echo "Merging details..."
+      - chmod +x merge-details.sh
+      - ./merge-details.sh
+      - ls -l
+      - cat sbom-result.txt || echo "sbom-result.txt not found"
+
+      - echo "Running Trivy scan..."
+      - chmod +x trivy.sh
+      - ./trivy.sh
+      - ls -l
+      - cat trivy-vulnerabilities.txt || echo "trivy-vulnerabilities.txt not found"
+
+  post_build:
+    commands:
+      - echo "Build completed. Preparing artifacts..."
+
+artifacts:
+  files:
+    - sbom-result.txt
+    - trivy-vulnerabilities.txt
